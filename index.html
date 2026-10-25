@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Florida Library System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-slate-100 min-h-screen flex items-center justify-center p-4 relative overflow-x-hidden">
+
+    <!-- Exit Button -->
+    <button id="exit-btn" class="exit-btn" title="Exit Application">
+        <i class="fas fa-times text-xl"></i>
+    </button>
+
+    <!-- UI Container -->
+    <div id="ui-container" class="w-full max-w-4xl relative z-10">
+
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="screen glass-panel p-8 md:p-12 text-center">
+            <div class="floating mb-6 inline-block p-4 rounded-full bg-indigo-500/10 border border-indigo-500/20 backdrop-blur-md">
+                <span class="text-6xl drop-shadow-md">📚</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">
+                Welcome to Florida Library System
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 mb-8 max-w-xl mx-auto font-light">
+                Discover, rent, purchase, or list your favorite books in a modern digital space.
+            </p>
+            <button id="start-btn" class="px-10 py-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 text-white font-bold rounded-full shadow-lg shadow-indigo-500/30 pulse text-lg transition-all transform hover:scale-105 active:scale-95">
+                <span>Get Started</span>
+                <i class="fas fa-arrow-right ml-2 text-sm"></i>
+            </button>
+        </div>
+
+        <!-- Details Form Screen -->
+        <div id="details-screen" class="screen glass-panel p-8 md:p-10">
+            <div class="floating mb-4 text-center">
+                <span class="text-5xl">👤</span>
+            </div>
+            <h2 class="text-3xl font-extrabold mb-2 text-center bg-gradient-to-r from-indigo-300 to-purple-300 bg-clip-text text-transparent">
+                User Registration
+            </h2>
+            <p class="text-sm text-slate-400 text-center mb-6">Please enter your details to enter the library</p>
+            
+            <form id="details-form" class="space-y-5 max-w-lg mx-auto">
+                <div>
+                    <label for="name" class="block text-sm font-medium mb-1.5 text-slate-300">Full Name</label>
+                    <div class="relative">
+                        <i class="fas fa-user absolute left-4 top-3.5 text-slate-400"></i>
+                        <input type="text" id="name" class="w-full pl-11 pr-4 py-3 bg-slate-800/80 rounded-xl border border-slate-700/80 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-slate-100 placeholder-slate-500 outline-none transition" placeholder="Enter your full name" required>
+                    </div>
+                </div>
+                <div>
+                    <label for="age" class="block text-sm font-medium mb-1.5 text-slate-300">Age</label>
+                    <div class="relative">
+                        <i class="fas fa-calendar-alt absolute left-4 top-3.5 text-slate-400"></i>
+                        <input type="number" id="age" min="1" max="120" step="1" 
+                               class="w-full pl-11 pr-4 py-3 bg-slate-800/80 rounded-xl border border-slate-700/80 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-slate-100 placeholder-slate-500 outline-none transition" 
+                               placeholder="Enter your age"
+                               required
+                               oninput="validity.valid||(value='');">
+                    </div>
+                </div>
+                <div>
+                    <label for="phone" class="block text-sm font-medium mb-1.5 text-slate-300">Phone Number</label>
+                    <div class="relative">
+                        <i class="fas fa-phone absolute left-4 top-3.5 text-slate-400"></i>
+                        <input type="tel" id="phone" class="w-full pl-11 pr-4 py-3 bg-slate-800/80 rounded-xl border border-slate-700/80 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-slate-100 placeholder-slate-500 outline-none transition" placeholder="Enter your phone number" required>
+                    </div>
+                </div>
+                <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/25 mt-6 flex items-center justify-center space-x-2 transition transform hover:-translate-y-0.5">
+                    <span>Proceed to Library</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- Main Menu Screen -->
+        <div id="main-menu-screen" class="screen glass-panel p-8 md:p-10">
+            <div class="floating mb-4 text-center">
+                <span class="text-5xl">🏛️</span>
+            </div>
+            <h2 class="text-3xl font-extrabold mb-2 text-center bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">
+                Library Services
+            </h2>
+            <p class="text-sm text-slate-400 text-center mb-8">Select an option to proceed</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 w-full">
+                <button id="purchase-btn" class="book-option p-6 bg-gradient-to-br from-indigo-900/80 to-purple-900/80 hover:from-indigo-800 hover:to-purple-800 border border-indigo-500/30 rounded-2xl flex flex-col items-center justify-center text-center space-y-3 shadow-xl backdrop-blur-sm group">
+                    <span class="text-4xl group-hover:scale-110 transition-transform">🛒</span> 
+                    <span class="text-xl font-bold text-indigo-200">Purchase Book</span>
+                    <span class="text-xs text-indigo-300/70">Buy books for your collection</span>
+                </button>
+
+                <button id="rent-btn" class="book-option p-6 bg-gradient-to-br from-emerald-900/80 to-teal-900/80 hover:from-emerald-800 hover:to-teal-800 border border-emerald-500/30 rounded-2xl flex flex-col items-center justify-center text-center space-y-3 shadow-xl backdrop-blur-sm group">
+                    <span class="text-4xl group-hover:scale-110 transition-transform">📜</span> 
+                    <span class="text-xl font-bold text-emerald-200">Rent a Book</span>
+                    <span class="text-xs text-emerald-300/70">Rent books for limited days</span>
+                </button>
+
+                <button id="sell-btn" class="book-option p-6 bg-gradient-to-br from-rose-900/80 to-amber-900/80 hover:from-rose-800 hover:to-amber-800 border border-rose-500/30 rounded-2xl flex flex-col items-center justify-center text-center space-y-3 shadow-xl backdrop-blur-sm group">
+                    <span class="text-4xl group-hover:scale-110 transition-transform">💰</span> 
+                    <span class="text-xl font-bold text-rose-200">Sell a Book</span>
+                    <span class="text-xs text-rose-300/70">List your books for sale</span>
+                </button>
+            </div>
+
+            <button id="show-books-btn" class="mt-8 px-6 py-4 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 rounded-xl flex items-center space-x-3 w-full justify-center transition font-semibold text-slate-200">
+                <i class="fas fa-book-open text-indigo-400"></i>
+                <span>Explore Full Collection</span>
+            </button>
+        </div>
+        
+        <!-- Books List Screen -->
+        <div id="books-list-screen" class="screen glass-panel p-6 md:p-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6 pb-4 border-b border-slate-700/50">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-indigo-200 flex items-center space-x-3">
+                    <i class="fas fa-books text-indigo-400"></i>
+                    <span>Available Books</span>
+                </h2>
+                <div class="relative w-full sm:w-72">
+                    <i class="fas fa-search absolute left-3.5 top-3 text-slate-400"></i>
+                    <input type="text" id="book-search" placeholder="Search by title or author..." class="w-full pl-10 pr-4 py-2.5 bg-slate-800/80 rounded-xl border border-slate-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm text-slate-100 outline-none">
+                </div>
+            </div>
+
+            <div id="books-grid" class="book-grid">
+                <!-- Books will be dynamically inserted here -->
+            </div>
+
+            <div class="flex justify-center mt-6">
+                <button class="px-6 py-3 bg-slate-800/80 hover:bg-slate-700 border border-slate-700/80 rounded-xl flex items-center space-x-2 transition font-medium text-slate-300" onclick="showScreen('main-menu-screen')">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Menu</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Purchase Screen -->
+        <div id="purchase-screen" class="screen glass-panel p-8">
+            <div class="floating mb-4 text-center">
+                <span class="text-5xl">🛒</span>
+            </div>
+            <h2 class="text-3xl font-extrabold mb-6 text-center text-indigo-300">Purchase a Book</h2>
+            
+            <form id="purchase-form" class="space-y-4 max-w-lg mx-auto">
+                <div>
+                    <label for="purchase-book-select" class="block text-sm font-medium mb-2 text-slate-300">Select Book</label>
+                    <select id="purchase-book-select" class="w-full px-4 py-3 bg-slate-800/80 rounded-xl border border-slate-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-slate-100 outline-none">
+                        <option value="">Select a book to purchase</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="purchase-quantity" class="block text-sm font-medium mb-2 text-slate-300">Quantity</label>
+                    <input type="number" id="purchase-quantity" min="1" value="1" class="w-full px-4 py-3 bg-slate-800/80 rounded-xl border border-slate-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-slate-100 outline-none" required>
+                </div>
+                <div class="bg-slate-900/80 p-4 rounded-xl border border-indigo-500/20 mt-4">
+                    <p class="text-xs uppercase tracking-wider font-semibold text-indigo-400">Total Price</p>
+                    <p id="purchase-price-display" class="text-3xl font-black text-indigo-300 mt-1">Rs. 0.00</p>
+                </div>
+                <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/25 mt-6 flex items-center justify-center space-x-2 transition">
+                    <span>Complete Purchase</span>
+                    <i class="fas fa-check"></i>
+                </button>
+            </form>
+
+            <div class="max-w-lg mx-auto mt-4">
+                <button class="w-full py-2.5 bg-slate-800/60 hover:bg-slate-700/60 text-slate-300 rounded-xl flex items-center justify-center text-sm font-medium transition" onclick="showScreen('main-menu-screen')">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    Back to Menu
+                </button>
+            </div>
+        </div>
+        
+        <!-- Rent Screen -->
+        <div id="rent-screen" class="screen glass-panel p-8">
+            <div class="floating mb-4 text-center">
+                <span class="text-5xl">📜</span>
+            </div>
+            <h2 class="text-3xl font-extrabold mb-6 text-center text-emerald-300">Rent a Book</h2>
+            
+            <form id="rent-form" class="space-y-4 max-w-lg mx-auto">
+                <div>
+                    <label for="rent-book-select" class="block text-sm font-medium mb-2 text-slate-300">Select Book</label>
+                    <select id="rent-book-select" class="w-full px-4 py-3 bg-slate-800/80 rounded-xl border border-slate-700 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-slate-100 outline-none">
+                        <option value="">Select a book to rent</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="rent-days" class="block text-sm font-medium mb-2 text-slate-300">Rental Period (Days)</label>
+                    <input type="number" id="rent-days" min="1" max="30" value="7" class="w-full px-4 py-3 bg-slate-800/80 rounded-xl border border-slate-700 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-slate-100 outline-none" required>
+                </div>
+                <div class="bg-slate-900/80 p-4 rounded-xl border border-emerald-500/20 mt-4">
+                    <p class="text-xs uppercase tracking-wider font-semibold text-emerald-400">Calculated Rent Rate (10%/week)</p>
+                    <p id="rent-price-display" class="text-3xl font-black text-emerald-300 mt-1">Rs. 0.00</p>
+                </div>
+                <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/25 mt-6 flex items-center justify-center space-x-2 transition">
+                    <span>Confirm Rental</span>
+                    <i class="fas fa-check"></i>
+                </button>
+            </form>
+
+            <div class="max-w-lg mx-auto mt-4">
+                <button class="w-full py-2.5 bg-slate-800/60 hover:bg-slate-700/60 text-slate-300 rounded-xl flex items-center justify-center text-sm font-medium transition" onclick="showScreen('main-menu-screen')">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    Back to Menu
+                </button>
+            </div>
+        </div>
+
+        <!-- Sell Screen -->
+        <div id="sell-screen" class="screen glass-panel p-8">
+            <div class="floating mb-4 text-center">
+                <span class="text-5xl">💰</span>
+            </div>
+            <h2 class="text-3xl font-extrabold mb-6 text-center text-rose-300">Sell a Book</h2>
+            
+            <form id="sell-form" class="space-y-4 max-w-lg mx-auto">
+                <div>
+                    <label for="sell-book-name" class="block text-sm font-medium mb-2 text-slate-300">Book Name</label>
+                    <input type="text" id="sell-book-name" class="w-full px-4 py-3 bg-slate-800/80 rounded-xl border border-slate-700 focus:ring-2 focus:ring-rose-500 focus:border-rose-500 text-slate-100 outline-none" placeholder="Enter book title" required>
+                </div>
+                <div>
+                    <label for="sell-author" class="block text-sm font-medium mb-2 text-slate-300">Author Name</label>
+                    <input type="text" id="sell-author" class="w-full px-4 py-3 bg-slate-800/80 rounded-xl border border-slate-700 focus:ring-2 focus:ring-rose-500 focus:border-rose-500 text-slate-100 outline-none" placeholder="Enter author name" required>
+                </div>
+                <div>
+                    <label for="sell-price" class="block text-sm font-medium mb-2 text-slate-300">Asking Price (Rs.)</label>
+                    <input type="number" id="sell-price" class="w-full px-4 py-3 bg-slate-800/80 rounded-xl border border-slate-700 focus:ring-2 focus:ring-rose-500 focus:border-rose-500 text-slate-100 outline-none" min="0" placeholder="Enter price" required>
+                </div>
+                <div>
+                    <label for="sell-condition" class="block text-sm font-medium mb-2 text-slate-300">Book Condition</label>
+                    <select id="sell-condition" class="w-full px-4 py-3 bg-slate-800/80 rounded-xl border border-slate-700 focus:ring-2 focus:ring-rose-500 focus:border-rose-500 text-slate-100 outline-none">
+                        <option value="New">New</option>
+                        <option value="Like New">Like New</option>
+                        <option value="Very Good">Very Good</option>
+                        <option value="Good">Good</option>
+                        <option value="Acceptable">Acceptable</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white font-bold rounded-xl shadow-lg shadow-rose-500/25 mt-6 flex items-center justify-center space-x-2 transition">
+                    <span>List Book for Sale</span>
+                    <i class="fas fa-check"></i>
+                </button>
+            </form>
+
+            <div class="max-w-lg mx-auto mt-4">
+                <button class="w-full py-2.5 bg-slate-800/60 hover:bg-slate-700/60 text-slate-300 rounded-xl flex items-center justify-center text-sm font-medium transition" onclick="showScreen('main-menu-screen')">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    Back to Menu
+                </button>
+            </div>
+        </div>
+
+        <!-- Receipt Screen -->
+        <div id="receipt-screen" class="screen glass-panel p-8 text-center">
+            <div class="floating mb-4">
+                <span class="text-5xl">🧾</span>
+            </div>
+            <h2 class="text-3xl font-extrabold mb-2 text-indigo-300">Transaction Details</h2>
+            <p class="text-sm text-slate-400 mb-6">Here is your official transaction summary</p>
+
+            <div id="receipt-content" class="w-full max-w-lg mx-auto text-left bg-slate-900/90 p-6 rounded-2xl border border-slate-700/80 shadow-2xl mb-6 backdrop-blur-md">
+                <!-- Receipt details will be inserted here dynamically -->
+            </div>
+
+            <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 justify-center max-w-lg mx-auto">
+                <button id="download-receipt-btn" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl shadow-lg shadow-emerald-600/20 flex items-center justify-center transition">
+                    <i class="fas fa-download mr-2"></i>
+                    Download Receipt
+                </button>
+                <button class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-600/20 flex items-center justify-center transition" onclick="showScreen('main-menu-screen')">
+                    <i class="fas fa-bars mr-2"></i>
+                    Main Menu
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Custom Modal for Messages -->
+    <div id="message-modal" class="fixed inset-0 flex items-center justify-center p-4 z-50 hidden bg-black/60 backdrop-blur-sm">
+      <div class="bg-slate-800 text-slate-100 p-6 rounded-2xl shadow-2xl max-w-sm w-full border border-slate-700 transform transition-all scale-100">
+          <h3 id="modal-title" class="text-xl font-bold mb-2 text-indigo-300"></h3>
+          <p id="modal-message" class="text-sm text-slate-300 mb-6"></p>
+          <div class="flex justify-end">
+              <button id="modal-ok-btn" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition shadow-md">OK</button>
+          </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
